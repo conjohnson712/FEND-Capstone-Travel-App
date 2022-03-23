@@ -53,9 +53,16 @@ app.get('/all', (req, res)=>{
 // References:
 // Lesson 3-5: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1845/concepts/0c75d5b8-3dde-4404-9552-c1c76c10b2ab
 // Lesson 3-8: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1845/concepts/81afa555-a670-428e-99a2-3a4d3ccefc96
+// Lesson 3-9: 
 app.post('/weatherData', addWeatherData);
 
 function addWeatherData (req, res){
+    let newData = req.body;
+    let newJournal = {
+        temperature: newData.temperature,
+        date: newData.date,
+        feelings: newData.feelings,
+    }
+    projectData.push(newJournal)
     res.send('POST received');
-    projectData.push(req.body)
 };
