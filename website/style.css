@@ -1,6 +1,11 @@
 body{
     background: #6d04e6;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Image Source: https://assets.wallpapersin4k.org/uploads/2017/04/Beautiful-Weather-Wallpapers-24.jpg */
+    background: url(./img/wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 150vh;
 }
 
 #app{
@@ -8,18 +13,18 @@ body{
     grid-auto-rows: minmax(150px, auto);
     /* grid-template-columns:  */
     height:100vh;
-    background: url(./img/wallpaper.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    
+
     color: #f0d43a;
-    justify-content: center;
+    margin: 0 auto;
     grid-gap: 1em;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
 }
 
-.holder{
 
+.holder{
+    
 }
 
 .entry{
@@ -27,11 +32,11 @@ body{
 }
 
 #entryHolder{
-
+    
 }
 
 #date{
-
+    
 }
 
 #temp{
@@ -39,12 +44,18 @@ body{
 }
 
 #content{
-
+    
 }
 
 .headline {
+    text-align: center;
+    font-size: 30px;
+    color: #f0d43a;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    letter-spacing: 1.5px;
 
 }
+
 .title{
 
 }
@@ -54,18 +65,21 @@ label{
     display:block;
     font-size: 27px;
     text-align: center;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    letter-spacing: 1.5px;
 }
 
 input{
     display:block;
     height: 60px;
     width: 320px;
-    background:#22b2da;
-    align-self: center;
-    color: #f0d43a;
+    background:#41bcdf;
+    color: black;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    letter-spacing: 1.5px;
     border: none;
+    margin: 0 auto;
 }
 
 button{
@@ -75,6 +89,9 @@ button{
     color: #f0d43a;
     font-size: 26px;
     font-family: 'Oswald', sans-serif;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    letter-spacing: 1.5px;
+    margin: 0 auto;
     border: none;
     box-shadow: 2px 4px 5px #444;
 }
@@ -83,11 +100,13 @@ h1{
 }
 
 textarea{
-    background:#22b2da;
-    color: #f0d43a;
-    align-content: center;
+    background:#41bcdf;
+    color: black;
+    letter-spacing: 1.5px;
+    margin: 0 auto;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    
 }
 /* Reset style for HTML element on active to have no border*/
 input:focus,
