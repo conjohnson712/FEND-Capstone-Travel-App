@@ -5,14 +5,12 @@ body{
     background: url(./img/wallpaper.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    height: 113vh;
+    height: 120vh;
 }
 
 #app{
     display: flex;
     flex-direction: column;
-
-
     height:100vh;
     color: #f0d43a;
     grid-gap: 1em;
@@ -25,6 +23,7 @@ body{
     display: flex;
     flex-direction: column;
     margin: auto;
+    
 }
 
 .entry{
@@ -35,8 +34,10 @@ body{
 #entryHolder{
     display: flex;
     flex-direction: column;
+    height: 200px;
+    width: 400px;
     background:#41bcdf;
-    opacity: 20%;
+    opacity: 80%;
     color: #7f2edb;
     letter-spacing: 1.5px;
     margin: auto;
@@ -48,6 +49,8 @@ body{
 #date,
 #temp,
 #content{
+    display: grid;
+    font-size: 12px;
     text-align: center;
     color: #f0d43a;
 }
@@ -113,7 +116,7 @@ button{
     box-shadow: 2px 4px 5px #444;
 }
 button.hover{
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    box-shadow: 1 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 h1{
