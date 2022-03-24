@@ -26,15 +26,16 @@ document.getElementById("generate").addEventListener("click", generateJournal);
 const generateJournal = (e) => {
     const zipCode = document.getElementById("zip").value;
     const feelings = document.getElementById("feelings").value;
-    getWeatherData(baseURL, zipCode, feelings, apiKey)
+    console.log(newDate);
+    getWeatherData(baseURL, zipCode, apiKey)
 }
 
 /* Function to GET Web API Data*/
 // Reference: Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
 // getWeatherData: baseURL, zipCode, feelings, apiKey --> void
 // Async function that fetches the URL and necessary data and logs it
-const getWeatherData = async (baseURL, zipCode, feelings, apiKey) =>{
-    const res = await fetch(baseURL+zipCode+feelings+apiKey)
+const getWeatherData = async (baseURL, zipCode, apiKey) =>{
+    const res = await fetch(baseURL+zipCode+apiKey)
     try {
         const data = await res.json();
         console.log(data)
@@ -45,7 +46,24 @@ const getWeatherData = async (baseURL, zipCode, feelings, apiKey) =>{
 };
 
 /* Function to POST data */
+// Reference: Lesson 4-11: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/9e29ea8c-f587-4e11-9c4a-e2671c23e4e8
+const postData = async ( url ="", data = {}) =>{
+    const response = await fetch(url, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
 
+    try {
+        const newData = await response.json();
+        return newData;
+    } catch(error) {
+        console.log("error", error);
+    }
+};
 
 /* Function to GET Project Data */
 // Reference: Rubric, 'Dynamically Update UI': https://review.udacity.com/#!/rubrics/4671/view
