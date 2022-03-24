@@ -5,18 +5,13 @@
 // Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
 // Knowledge Post: https://knowledge.udacity.com/questions/771226
 let baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
-let apiKey ="a29269f9dfa285042b1085ced6cbfb7b&units=imperial";
+let apiKey ="b6a391b79acd9df2db1fbbabbe00b992";
 
 
 // Create a new date instance dynamically with JS
 // Part of starter code
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-
-// Event listener to add function to existing HTML DOM element
-// Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
-document.getElementById("generate").addEventListener("click", generateJournal);
-
 
 /* Function called by event listener */
 // Reference: Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
@@ -29,6 +24,15 @@ const generateJournal = (e) => {
     console.log(newDate);
     getWeatherData(baseURL, zipCode, apiKey)
 }
+
+// Event listener to add function to existing HTML DOM element
+// This was put after generateJournal to satisfy DOM error code
+// Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
+document.getElementById("generate").addEventListener("click", generateJournal);
+
+
+
+
 
 /* Function to GET Web API Data*/
 // Reference: Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
@@ -74,7 +78,7 @@ const retrieveData = async () =>{
         const allData = await request.json()
         console.log(allData)
         // Write updated data to DOM Elements
-        document.getElementById("temp").innerHTML = Math.round (allData.temp)+ "degrees";
+        document.getElementById("temp").innerHTML = Math.round(allData.temp)+ "degrees";
         document.getElementById("content").innerHTML = allData.feel;
         document.getElementById("date").innerHTML = allData.date;
     }
