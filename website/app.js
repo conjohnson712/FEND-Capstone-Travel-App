@@ -47,7 +47,7 @@ const getWeatherData = async (baseURL, zipCode, apiKey) =>{
 
 /* Function to POST data */
 // Reference: Lesson 4-11: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/9e29ea8c-f587-4e11-9c4a-e2671c23e4e8
-const postData = async ( url ="", data = {}) =>{
+const postData = async ( url ="http://localhost:8712/weatherData", data = {}) =>{
     const response = await fetch(url, {
         method: "POST",
         credentials: "same-origin",
