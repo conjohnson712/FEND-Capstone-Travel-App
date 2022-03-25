@@ -63,6 +63,7 @@ function addWeatherData (req, res){
     res.send("POST received");
     let newData = req.body;
     let newJournal = {
+        city: newData.name,
         date: newData.date,
         temp: newData.temperature,
         content: newData.feelings,
