@@ -29,7 +29,7 @@ const generateJournal = (e) => {
     .then(function(data){
         // Add data
         console.log(data);
-        postData("http://localhost:8712/weatherData", {temp: data.temp, date: newDate, content: feelings})
+        postData("http://localhost:8712/weatherData", {city: data.name, temp: data.temp, date: newDate, content: feelings})
     })
         .then(function(){
             retrieveData()
