@@ -41,6 +41,7 @@ body{
     color: #7f2edb;
     letter-spacing: 1.5px;
     margin: auto;
+    border-radius: 25%;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     
@@ -95,7 +96,9 @@ input{
     color: #7f2edb;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    text-align: center;
     letter-spacing: 1.5px;
+    border-radius: 75%;
     border: none;
     margin: 0 auto;
 }
@@ -113,6 +116,7 @@ button{
     letter-spacing: 1.5px;
     margin: auto;
     border: none;
+    border-radius: 50%;
     box-shadow: 2px 4px 5px #444;
 }
 button.hover{
@@ -127,7 +131,9 @@ textarea{
     display: flex;
     background:#41bcdf;
     color: #7f2edb;
+    text-align: center;
     letter-spacing: 1.5px;
+    border-radius: 25%;
     margin: auto;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
