@@ -59,14 +59,15 @@ app.post("/weatherData", addWeatherData);
 // addWeatherData: request, response --> void
 // Verifies a Post was received, then builds newJournal entries with 
 // the weather data
+// Reference: Reviewer Suggestion
 function addWeatherData (req, res){
     res.send("POST received");
     let newData = req.body;
     let newJournal = {
-        city: newData.name,
+        city: newData.city,
         date: newData.date,
-        temp: newData.temperature,
-        content: newData.feelings,
+        temp: newData.temp,
+        content: newData.content,
     }
-    projectData.push(newJournal);
-};
+    projectData=newJournal;
+    };

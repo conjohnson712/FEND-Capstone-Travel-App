@@ -28,6 +28,7 @@ body{
 
 .entry{
     background: #3b4a6b66;
+    display: block;
 
 }
 
@@ -51,7 +52,7 @@ body{
 #temp,
 #content{
     display: grid;
-    font-size: 12px;
+    font-size: 16px;
     text-align: center;
     color: #f0d43a;
 }
@@ -141,9 +142,10 @@ textarea{
 }
 
 figure {
-    display: grid;
+    display: flex;
     padding-top: 10px;
-
+    font-size: 12px;
+    justify-content: center;
 }
 /* Reset style for HTML element on active to have no border*/
 input:focus,

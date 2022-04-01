@@ -4,7 +4,7 @@
 // References: 
 // Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
 // Knowledge Post: https://knowledge.udacity.com/questions/771226
-const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
+const baseURL = "http://api.openweathermap.org/data/2.5/weather?zip=";
 const apiKey ="&appid=b6a391b79acd9df2db1fbbabbe00b992&units=imperial";
 
 
@@ -20,7 +20,7 @@ const newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 // generateJournal: element --> void
 // Gets and assigns values needed to generate a journal entry (zip, feelings, date).
 // Calls the getWeatherData function
-const generateJournal = (e) => {
+const generateJournal = () => {
     const zipCode = document.getElementById("zip").value;
     const feelings = document.getElementById("feelings").value;
 
@@ -29,7 +29,7 @@ const generateJournal = (e) => {
     .then(function(data){
         // Add data
         console.log(data);
-        postData("http://localhost:8712/weatherData", {city: data.name, temp: data.temp, date: newDate, content: feelings})
+        postData("http://localhost:8712/weatherData", {city: data.name, temp: data.main.temp, date: newDate, content: feelings})
     })
         .then(function(){
             retrieveData()
@@ -80,7 +80,7 @@ const postData = async ( url ="", data = {}) =>{
 /* Function to GET Project Data */
 // Reference: Rubric, 'Dynamically Update UI': https://review.udacity.com/#!/rubrics/4671/view
 const retrieveData = async () =>{
-    const request = await fetch("/weatherData");
+    const request = await fetch();
     try {
         // Transform into JSON
         const allData = await request.json()
