@@ -61,7 +61,7 @@ app.post("/weatherData", addWeatherData);
 // the weather data
 // Reference: Reviewer Suggestion
 function addWeatherData (req, res){
-    res.send("POST received");
+    res.send("Post Received")
     let newData = req.body;
     let newJournal = {
         city: newData.city,
