@@ -5,7 +5,7 @@
 // Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
 // Knowledge Post: https://knowledge.udacity.com/questions/771226
 const baseURL = "http://api.openweathermap.org/data/2.5/weather?zip=";
-const apiKey ="&appid=b6a391b79acd9df2db1fbbabbe00b992&units=imperial";
+const apiKey = process.env.API_KEY
 
 
 // Create a new date instance dynamically with JS
