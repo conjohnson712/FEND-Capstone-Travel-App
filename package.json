@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "weather-journal-dependencies",
   "version": "1.0.0",
@@ -28,3 +29,36 @@
     "node": "^14.4.0"
   }
 }
+||||||| empty tree
+=======
+{
+  "name": "weather-journal-dependencies",
+  "version": "1.0.0",
+  "description": "Package of JSON dependencies for Weather Journal Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/conjohnson712/Weather-Journal-App.git"
+  },
+  "author": "Connor Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/conjohnson712/Weather-Journal-App/issues"
+  },
+  "homepage": "https://github.com/conjohnson712/Weather-Journal-App#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.3",
+    "webpack": "^5.72.0"
+  },
+  "devDependencies": {
+    "node": "^14.4.0"
+  }
+}
+>>>>>>> 6d217923e4cb3bdebcbe57e4c0c51acc0616203d
