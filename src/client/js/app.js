@@ -95,8 +95,7 @@ const retrieveData = async () =>{
         // Appropriately handle the error
     }
 }
-||||||| empty tree
-=======
+
 /* Global Variables */
 
 // Personal API Key for OpenWeatherMap API
@@ -195,4 +194,3 @@ const retrieveData = async () =>{
     }
 }
 
-export { generateJournal }
