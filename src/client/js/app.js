@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* Global Variables */
 
 // Personal API Key for OpenWeatherMap API
@@ -195,4 +194,5 @@ const retrieveData = async () =>{
         // Appropriately handle the error
     }
 }
->>>>>>> 6d217923e4cb3bdebcbe57e4c0c51acc0616203d
+
+export { generateJournal }
