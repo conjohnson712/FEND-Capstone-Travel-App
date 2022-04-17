@@ -34,7 +34,7 @@ app.use(cors());
 // Reference: Lesson 2-8: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1844/concepts/ecf2408b-6ab1-4906-bd28-8348d99bc95d
 app.use(express.static("dist"));
 
-const port = 8712;
+const port = 8713;
 
 // Callback to debug 
 // Spin up the server
