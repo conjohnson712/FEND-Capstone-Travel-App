@@ -1,5 +1,5 @@
-import { generateJournal } from './js/app';
+import { generateGeoname } from './js/app';
 
 import './styles/base.scss'
 
-export { generateJournal }
+export { generateGeoname } 

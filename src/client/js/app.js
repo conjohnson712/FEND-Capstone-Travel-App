@@ -1,13 +1,5 @@
 /* Global Variables */
 
-// Personal API Key for OpenWeatherMap API
-// References: 
-// Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
-// Knowledge Post: https://knowledge.udacity.com/questions/771226
-const baseURL = "http://api.openweathermap.org/data/2.5/weather?zip=";
-const apiKey = process.env.API_KEY
-
-
 // Create a new date instance dynamically with JS
 // Part of starter code
 let d = new Date();
@@ -20,16 +12,15 @@ const newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 // generateJournal: element --> void
 // Gets and assigns values needed to generate a journal entry (zip, feelings, date).
 // Calls the getWeatherData function
-const generateJournal = () => {
-    const zipCode = document.getElementById("zip").value;
-    const feelings = document.getElementById("feelings").value;
+const generateGeoname = () => {
+    const city = document.getElementById("city").value;
 
     console.log(newDate);
-    getWeatherData(baseURL, zipCode, apiKey)
+    getCityInfo(geonameURL, zipCode, apiKey)
     .then(function(data){
         // Add data
         console.log(data);
-        postData("http://localhost:8712/weatherData", {city: data.name, temp: data.main.temp, date: newDate, content: feelings})
+        postData("http://localhost:8713/geonames", {city: data.name, temp: data.main.temp, date: newDate, content: feelings})
     })
         .then(function(){
             retrieveData()
@@ -39,15 +30,15 @@ const generateJournal = () => {
 // Event listener to add function to existing HTML DOM element
 // This was put after generateJournal to satisfy DOM error code
 // Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
-document.getElementById("generate").addEventListener("click", generateJournal);
+document.getElementById("submit").addEventListener("click", generateGeoname);
 
 
 /* Function to GET Web API Data*/
 // Reference: Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
 // getWeatherData: baseURL, zipCode, feelings, apiKey --> void
 // Async function that fetches the URL and necessary data and logs it
-const getWeatherData = async (baseURL, zipCode, apiKey) =>{
-    const res = await fetch(baseURL+zipCode+",us"+apiKey)
+const getCityInfo = async (geonameURL, zipCode, apiKey) =>{
+    const res = await fetch(geonameURL+zipCode+",us"+apiKey)
     try {
         const data = await res.json();
         console.log(data)

@@ -1,0 +1,14 @@
+// Reference: Knowledge Post: https://knowledge.udacity.com/questions/724368
+{
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  }
+  

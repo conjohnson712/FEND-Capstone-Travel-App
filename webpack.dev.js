@@ -8,12 +8,13 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
+    devServer: {
+        port: 8713
+    },
 
     // Reference: From "Evaluate News Article with NLP" course
     // Lesson 4-4: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0430/modules/c73f80be-8f45-406d-a709-8123a69e6d52/lessons/722ecfe4-3174-4a6e-8638-ea0ab8eb49ac/concepts/abea4754-add0-465b-be4e-5f710a5a758f
     output: {
-        // path: path.join(__dirname, 'dist'),
-        // filename: 'bundle.min.js',
         libraryTarget:'var',
         library: "Client",
     },
