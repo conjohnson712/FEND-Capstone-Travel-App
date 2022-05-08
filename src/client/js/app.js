@@ -74,15 +74,15 @@ const postData = async ( url ="", data = {}) =>{
 /* Function to GET Project Data */
 // Reference: Rubric, 'Dynamically Update UI': https://review.udacity.com/#!/rubrics/4671/view
 const updateUI = async () =>{
-    const request = await fetch("http://localhost:8712/weatherData");
+    const request = await fetch("http://localhost:8713/geoname");
     try {
         // Transform into JSON
         const allData = await request.json()
         console.log(allData)
         // Write updated data to DOM Elements
-        document.getElementById("temp").innerHTML = Math.round(allData.temp)+ " Degrees Fahrenheit";
-        document.getElementById("content").innerHTML = allData.content;
-        document.getElementById("date").innerHTML = allData.date;
+        document.getElementById("lat").innerHTML = allData.lat;
+        document.getElementById("lng").innerHTML = allData.lng;
+        document.getElementById("country").innerHTML = allData.countrycode;
     }
     catch(error) {
         console.log("error", error);

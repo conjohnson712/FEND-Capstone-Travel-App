@@ -78,24 +78,27 @@ app.get("/geonames", (req, res)=>{
 // API parameters determined from example API call: http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo
 app.post("/geonames", async function (req, res){
     const geonamesData = req.body;
-    const fullGeoURL = (`${geonamesURL}${geonamesData.city}&fuzzy=0.7&maxRows=1&username=${geonamesApiKey}`);
+    const fullGeoURL = `${geonamesURL}${geonamesData.city}&fuzzy=0.7&maxRows=1&username=${geonamesApiKey}`;
     console.log(fullGeoURL);
-    const newData = await fetch(fullGeoURL)
-                            .then(res => res.json());
+    const newData = await fetch(encodeURI(fullGeoURL))
+                            .then(res => res.json())
+    .then(newData => {
     console.log(newData);
     
+
     let geoEntry = {
         lat: newData.geonames[0].lat,
         lng: newData.geonames[0].lng,
         city: newData.geonames[0].toponymName, // Used instead of 'name' to avoid spelling errors
         country: newData.geonames[0].countrycode,
         wiki: newData.geonames[0].wikipedia,       
-    };
+    }});
     geonamesData=geoEntry
     console.log(geonamesData)
     res.send(geonamesData)
     }
 );
+
 
 //-------------- WeatherBit API-----------------// 
 // let weatherbitData = {};
