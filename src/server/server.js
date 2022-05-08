@@ -57,14 +57,15 @@ const server = app.listen(port, listening);
 // References: 
 // Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
 // Knowledge Post: https://knowledge.udacity.com/questions/771226
-const geonamesURL = 'http://api.geonames.org/citiesJSON?q=?';
+const geonamesURL = `http://api.geonames.org/searchJSON?q=`;
 const geonamesApiKey = process.env.GEO_API_KEY
 
 // Initialize Geoname route with a callback function
-// Callback function to complete GET '/all'
+// Callback function to complete GET '/geonames'
 // Reference: Lesson 3-2: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1845/concepts/b0d68e7d-274a-43ef-b3da-3cfe93a77961
+let geonamesData = {};
 app.get("/geonames", (req, res)=>{
-    res.send(projectData);
+    res.send(geonamesData);
 });
 
 
@@ -77,7 +78,7 @@ app.get("/geonames", (req, res)=>{
 // API parameters determined from example API call: http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo
 app.post("/geonames", async function (req, res){
     const geonamesData = req.body;
-    const fullGeoURL = `${geonamesURL}${destination}&lang=en&username=${geonamesApiKey}&maxRows=1`;
+    const fullGeoURL = (`${geonamesURL}${geonamesData.city}&fuzzy=0.7&maxRows=1&username=${geonamesApiKey}`);
     console.log(fullGeoURL);
     const newData = await fetch(fullGeoURL)
                             .then(res => res.json());
@@ -97,6 +98,6 @@ app.post("/geonames", async function (req, res){
 );
 
 //-------------- WeatherBit API-----------------// 
-let weatherbitData = {};
+// let weatherbitData = {};
 
 

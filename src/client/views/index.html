@@ -11,21 +11,42 @@
     <div class ="holder headline">
       Capstone Travel App
     </div>
-    <div class ="holder geonames">
-      <label for="city">Where Do You Wish To Go?</label>
-      <input type="text" id="city" placeholder="Enter City Here">
-    </div>
-    <div class ="holder feel">
-      <button id="submit" type = "submit"> Submit </button>
-    </div>
+
+    <section>
+      <form>
+        <div class ="holder geonames">
+          <label for="city">Where Do You Wish To Go?</label>
+          <input type="text" id="city" placeholder="Enter City Here">
+        </div>
+
+        <div class="holder departure">
+          <label for="Departure Date">When Will You Depart?</label>
+          <input type="text" id="departure" placeholder="Enter Departure Date Here">
+        </div>
+
+        <div class="holder return">
+          <label for="Return Date">When Will You Return?</label>
+          <input type="text" id="return" placeholder="Enter Return Date Here">
+        </div>
+
+        <div class ="holder submit">
+          <button id="submit" type = "submit"> Submit </button>
+        </div>
+      </form>
+    </section>
+  
     <div class ="holder entry">
       <div class = "title">About Your Destination:</div>
     </div>
-    <div id = "entryHolder">
-      <div id = "lat"></div> 
-      <div id = "long"></div>
-      <div id = "country"></div>
-    </div>
+
+    <section>
+      <div id = "entryHolder">
+        <div id = "lng"></div> 
+        <div id = "lat"></div>
+        <div id = "country"></div>
+      </div>
+    </section>
+
   </div>
 
   <script src="app.js" type="javascript"></script>

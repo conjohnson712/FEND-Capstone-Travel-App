@@ -9,35 +9,38 @@ const newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 // References: 
 // Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
 // Lesson 4-10: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/06b6f9e9-221f-4668-8d13-a70346b293d2
-// generateJournal: element --> void
-// Gets and assigns values needed to generate a journal entry (zip, feelings, date).
-// Calls the getWeatherData function
+// generateGeoname: element --> void
+// Gets and assigns values needed to generate a journal entry (city).
+// Calls the getCityInfo function
 const generateGeoname = () => {
-    const city = document.getElementById("city").value;
+
+    let city = document.getElementById("city").value;
 
     console.log(newDate);
-    getCityInfo(geonameURL, zipCode, apiKey)
+    getCityInfo(geonameURL, city, apiKey)
     .then(function(data){
         // Add data
         console.log(data);
         postData("http://localhost:8713/geonames", {city: data.name, temp: data.main.temp, date: newDate, content: feelings})
     })
         .then(function(){
-            retrieveData()
+            updateUI()
         })
     };
 
 // Event listener to add function to existing HTML DOM element
-// This was put after generateJournal to satisfy DOM error code
+// This was put after generateGeoname to satisfy DOM error code
 // Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
-document.getElementById("submit").addEventListener("click", generateGeoname);
+let submit = document.getElementById("submit");
+if(submit){
+    submit.addEventListener("click", generateGeoname);
+};
 
-
-/* Function to GET Web API Data*/
+/* Function to GET Geoname API Data*/
 // Reference: Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
-// getWeatherData: baseURL, zipCode, feelings, apiKey --> void
+// getCityInfo: geonameURL, city, apiKey --> void
 // Async function that fetches the URL and necessary data and logs it
-const getCityInfo = async (geonameURL, zipCode, apiKey) =>{
+const getCityInfo = async (geonameURL, city, apiKey) =>{
     const res = await fetch(geonameURL+zipCode+",us"+apiKey)
     try {
         const data = await res.json();
@@ -70,7 +73,7 @@ const postData = async ( url ="", data = {}) =>{
 
 /* Function to GET Project Data */
 // Reference: Rubric, 'Dynamically Update UI': https://review.udacity.com/#!/rubrics/4671/view
-const retrieveData = async () =>{
+const updateUI = async () =>{
     const request = await fetch("http://localhost:8712/weatherData");
     try {
         // Transform into JSON
