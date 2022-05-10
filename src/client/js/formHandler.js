@@ -1,5 +1,6 @@
 /* Global Variables */
 
+const fetch = require('node-fetch');
 // Create a new date instance dynamically with JS
 // Part of starter code
 let d = new Date();
