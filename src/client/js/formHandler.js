@@ -12,6 +12,7 @@ const newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 function handleSubmit(event) {
     event.preventDefault()
 
+
     // check what text was put into the form field
     // Function to POST data 
     let city = document.getElementById('city').value
@@ -23,7 +24,7 @@ function handleSubmit(event) {
             headers: {
                 "Content-Type": "application/json",
         },
-        body: JSON.stringify({ city }), // body data type must match "Content-Type" header
+        body: JSON.stringify({ city: city }), // body data type must match "Content-Type" header
     })
     .then(res => res.json())
     .then(function(res) {

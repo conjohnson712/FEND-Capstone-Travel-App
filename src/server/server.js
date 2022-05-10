@@ -59,7 +59,7 @@ const server = app.listen(8713, function(){
 // Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
 // Knowledge Post: https://knowledge.udacity.com/questions/771226
 const geonamesURL = `http://api.geonames.org/searchJSON?q=`;
-const geonamesApiKey = process.env.GEO_API_KEY
+const geonamesApiKey = process.env.GEO_API_KEY;
 
 // Initialize Geoname route with a callback function
 // Callback function to complete GET '/geonames'
@@ -98,6 +98,67 @@ app.post("/geonames", async function (req, res){
 
 
 //-------------- WeatherBit API-----------------// 
-// let weatherbitData = {};
+let weatherData = {};
+const weatherAPIKey = process.env.WB_API_KEY
+const weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily?`
+
+app.get("/weatherbit", (req, res)=>{
+    res.send(weatherData);
+});
 
 
+// WeatherBit Post Route
+// References:
+// My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
+// API parameters determined from example API call: https://www.weatherbit.io/api/weather-current
+app.post("/weatherbit", async function (req, res){
+    const fullweatherURL = `${weatherURL}lat=${geonamesData.geonames[0].lat}&lon=${geonamesData.geonames[0].lng}&key=${weatherAPIKey}`;
+    console.log(fullweatherURL);
+    const newData = await fetch(fullweatherURL)
+                            .then(res => res.json());
+                            
+    console.log(newData);
+
+    let weatherEntry = {
+        Description: newData.weather.description,
+        High: newData.max_temp,
+        Low: newData.low_temp
+    };
+    weatherData=weatherEntry;
+    console.log(weatherData);
+    res.send(weatherData);
+}
+);
+
+
+
+
+// --------------- Pixabay API -----------------// 
+let pixabayData = {};
+const pixabayAPIKey = process.env.PIX_API_KEY
+const pixabayURL = `https://pixabay.com/api/?`;
+
+app.get("/pixabay", (req, res)=>{
+    res.send(pixabayData);
+});
+
+
+// Pixabay Post Route
+// Reference:
+// API parameters determined from example API call: https://pixabay.com/api/docs/
+app.post("/pixabay", async function (req, res){
+    const fullpixabayURL = `${pixabayURL}key=${pixabayAPIKey}&q=${req.body.city}&image_type=photo`;
+    console.log(fullpixabayURL);
+    const newData = await fetch(fullpixabayURL)
+                            .then(res => res.json());
+                            
+    console.log(newData);
+
+    let pixabayEntry = {
+
+    };
+    pixabayData=pixabayEntry;
+    console.log(pixabayData);
+    res.send(pixabayData);
+}
+);
