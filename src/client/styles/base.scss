@@ -15,3 +15,58 @@ body{
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
 }
+
+
+/* Initial size for small screens < 600px*/
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 300px 300px 300px;
+    grid-template-rows: 250px 400px;
+    border: 2px solid #ffffff;
+    grid-template-areas:
+    "hd"
+    "nav"
+    "sd"
+    "main"
+    "ft";
+}
+
+
+/* For Screens 600px - 900px*/
+@media(min-width:600px) and (max-width:900px){
+    .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: 300px 300px 300px;
+        grid-template-rows: 250px 600px;
+        grid-template-areas:
+        "hd hd hd hd hd hd hd hd"
+        "nav nav nav nav nav nav nav"
+        "sd sd sd sd main main main main"
+        "ft ft ft ft ft ft ft ft";
+        border: 2px solid #ffffff;
+    }
+}
+
+
+/* Larger Screens */
+@media (min-width: 901px) {
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: 300px 300px 300px;
+        grid-template-rows: 250px 600px;
+        grid-template-areas:
+        "hd hd hd hd hd hd hd hd hd hd"
+        "nav nav nav nav nav nav nav nav nav"
+        "sd sd sd sd sd main main main main main"
+        "ft ft ft ft ft ft ft ft ft ft";
+        border: 2px solid #ffffff;
+    }
+}
