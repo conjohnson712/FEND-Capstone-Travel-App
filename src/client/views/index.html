@@ -5,41 +5,47 @@
   <title>Capstone Travel App</title>
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
   <link href="/src/client/styles/base.scss">
+  <link href="/src/client/styles/footer.scss">
+  <link href="/src/client/styles/form.scss">
+  <link href="/src/client/styles/header.scss">
+  <link href="/src/client/styles/resets.scss">
 </head>
 <body>
   <div id = "app">
-    <div class ="holder headline">
-      Capstone Travel App
+    <div class ="headline">
+      Plan Your Next Adventure
     </div>
 
     <section>
-      <form>
-        <div class ="holder geonames">
-          <label for="city">Where Do You Wish To Go?</label>
-          <input type="text" id="city" placeholder="Enter City Here">
-        </div>
-
-        <!-- <div class="holder departure">
-          <label for="Departure Date">When Will You Depart?</label>
-          <input type="text" id="departure" placeholder="Enter Departure Date Here">
-        </div>
-
-        <div class="holder return">
-          <label for="Return Date">When Will You Return?</label>
-          <input type="text" id="return" placeholder="Enter Return Date Here">
-        </div> -->
-
-        <div class ="holder submit">
-          <button id="submit" type = "submit"> Submit </button>
-        </div>
-      </form>
+      <div class="card1">
+        <form>
+          <div class ="holder destination">
+            <label for="city">Where Do You Wish To Go?</label>
+            <input type="text" id="city" placeholder="Enter City Here">
+          </div>
+  
+          <!-- <div class="holder departure">
+            <label for="Departure Date">When Will You Depart?</label>
+            <input type="text" id="departure" placeholder="Enter Departure Date Here">
+          </div>
+  
+          <div class="holder return">
+            <label for="Return Date">When Will You Return?</label>
+            <input type="text" id="return" placeholder="Enter Return Date Here">
+          </div> -->
+  
+          <div class ="holder submit">
+            <button id="submit" type = "submit"> Submit </button>
+          </div>
+        </form>
+      </div>
     </section>
   
-    <div class ="holder entry">
-      <div class = "title">About Your Destination:</div>
-    </div>
-
-    <section>
+    <div class="card2">
+      <div class ="holder entry">
+        <div class = "title">About Your Destination:</div>
+      </div>
+  
       <div id = "entryHolder">
         <div id = "lng"></div> 
         <div id = "lat"></div>
@@ -47,10 +53,16 @@
         <div id = "country"></div>
         <div id = "wikipedia"></div>
       </div>
-    </section>
-
+    </div>
   </div>
 
+  <footer>
+    <div id="copyright">
+      Starter code and project instructions provided by Udacity.com. Special thanks to the APIs: Geonames, WeatherBit, and Pixabay.
+    </div>
+    <div id="photo-credit">Background Image Credit: https://1.bp.blogspot.com/-MYepqyyYh7s/Tjr_juvuVEI/AAAAAAAAC9k/iMW1o7lhIOI/s1600/travel_0007.jpg</div>
+  </footer>
+  
   <script src="app.js" type="javascript"></script>
   <!-- <script>
     // Check that service workers are supported
