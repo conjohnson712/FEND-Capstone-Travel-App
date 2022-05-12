@@ -1,5 +1,5 @@
 /* Global Variables */
-
+const geonamesApiKey = process.env.GEO_API_KEY;
 const fetch = require('node-fetch');
 // Create a new date instance dynamically with JS
 // Part of starter code
@@ -12,7 +12,7 @@ const newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 // My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
 function handleSubmit(event) {
     event.preventDefault()
-
+    
 
     // check what text was put into the form field
     // Function to POST data 
@@ -48,17 +48,18 @@ if(submit){
 // Reference: 
 // My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
 const updateUI = async () => {
+    
     const request = await fetch('http://localhost:8713/geonames');
     try {
         // Transform into JSON
         const allData = await request.json();
         console.log(allData);
         // Write updated data to DOM elements
-        document.getElementById('lat').innerHTML = `Latitude: ${allData[0].lat}`;
-        document.getElementById('lng').innerHTML = `Longitude: ${allData[0].lng}`;
-        document.getElementById('city').innerHTML = `City: ${allData[0].toponymName}`;
-        document.getElementById('country').innerHTML = `Country: ${allData[0].countryCode}`;
-        document.getElementById('wikipedia').innerHTML = `Wikipedia: ${allData[0].wikipedia}`;
+        document.getElementById('lat').innerHTML = `Latitude: ${allData.lat}`;
+        document.getElementById('lng').innerHTML = `Longitude: ${allData.lng}`;
+        document.getElementById('city').innerHTML = `City: ${allData.toponymName}`;
+        document.getElementById('country').innerHTML = `Country: ${allData.countryCode}`;
+        document.getElementById('wikipedia').innerHTML = `Wikipedia: ${allData.wikipedia}`;
     }
     catch(error) {
         console.log('error', error);
