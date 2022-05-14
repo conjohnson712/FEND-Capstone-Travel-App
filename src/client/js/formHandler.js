@@ -12,13 +12,13 @@ const newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 // My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
 function handleSubmit(event) {
     event.preventDefault()
-    
 
     // check what text was put into the form field
     // Function to POST data 
     let city = document.getElementById('city').value
     if (Client.checkForCity(city)){
         console.log("::: Form Submitted :::");
+        console.log(`Key: ${geonamesApiKey}`);
         fetch('http://localhost:8713/geonames', {
             method: "POST",
             credentials: "same-origin",
