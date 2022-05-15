@@ -9,7 +9,7 @@ module.exports = {
     devtool: 'source-map',
     stats: 'verbose',
     devServer: {
-        port: 8713
+        port: 8713,
     },
 
     // Reference: From "Evaluate News Article with NLP" course

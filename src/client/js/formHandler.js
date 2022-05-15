@@ -1,6 +1,3 @@
-/* Global Variables */
-const geonamesApiKey = process.env.GEO_API_KEY;
-const fetch = require('node-fetch');
 // Create a new date instance dynamically with JS
 // Part of starter code
 let d = new Date();
@@ -18,7 +15,6 @@ function handleSubmit(event) {
     let city = document.getElementById('city').value
     if (Client.checkForCity(city)){
         console.log("::: Form Submitted :::");
-        console.log(`Key: ${geonamesApiKey}`);
         fetch('http://localhost:8713/geonames', {
             method: "POST",
             credentials: "same-origin",

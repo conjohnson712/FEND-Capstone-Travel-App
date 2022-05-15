@@ -9,6 +9,7 @@
   <link href="/src/client/styles/form.scss">
   <link href="/src/client/styles/header.scss">
   <link href="/src/client/styles/resets.scss">
+  <link rel="icon" href="data:,"> <!-- Added to combat 'favicon.ico' GET errors. Reference: https://stackoverflow.com/questions/1321878/how-to-prevent-favicon-ico-requests-->
 </head>
 <body>
   <div id = "app">
@@ -47,8 +48,8 @@
       </div>
   
       <div id = "entryHolder">
-        <div id = "lng"></div> 
         <div id = "lat"></div>
+        <div id = "lng"></div> 
         <div id = "city"></div>
         <div id = "country"></div>
         <div id = "wikipedia"></div>
@@ -63,7 +64,7 @@
     <div id="photo-credit">Background Image Credit: https://1.bp.blogspot.com/-MYepqyyYh7s/Tjr_juvuVEI/AAAAAAAAC9k/iMW1o7lhIOI/s1600/travel_0007.jpg</div>
   </footer>
   
-  <script src="app.js" type="javascript"></script>
+
   <!-- <script>
     // Check that service workers are supported
     if ('serviceWorker' in navigator) {
