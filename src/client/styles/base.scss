@@ -1,5 +1,11 @@
+@import "form.scss";
+@import "header.scss";
+@import "footer.scss";
+
+
 body{
-    background: #1c8cd7;
+    background: #6000c2;
+    background: linear-gradient(180deg, #6000c2 3%, #00e8ff 41%, #ffffff 58%, #c2ff00 68%, #0076ff 97%);
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,6 +22,25 @@ body{
     font-family: 'Oswald', sans-serif;
 }
 
+.card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px 0 #ffffff;
+    transition: 0.3s;
+    font-size: 20px;
+    padding: 2px 10px;
+    background: rgb(96,0,194);
+    background: radial-gradient(circle, rgba(96,0,194,1) 3%, rgba(95,169,255,1) 97%);
+    color: #ffffff;
+}
+
+.card in {
+    grid-area: in;
+}
+
+.card out {
+    grid-area: out;
+}
 
 /* Initial size for small screens < 600px*/
 .container{
@@ -23,14 +48,15 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
     grid-template-columns: 300px 300px 300px;
     grid-template-rows: 250px 400px;
     border: 2px solid #ffffff;
     grid-template-areas:
     "hd"
-    "nav"
-    "sd"
-    "main"
+    "city"
+    "dDate"
+    "rDate"
     "ft";
 }
 
@@ -39,15 +65,15 @@ body{
 @media(min-width:600px) and (max-width:900px){
     .container{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
         grid-template-columns: 300px 300px 300px;
         grid-template-rows: 250px 600px;
         grid-template-areas:
         "hd hd hd hd hd hd hd hd"
-        "nav nav nav nav nav nav nav"
-        "sd sd sd sd main main main main"
+        "city city city city city city city city"
+        "dDate dDate dDate dDate rDate rDate rDate rDate"
         "ft ft ft ft ft ft ft ft";
         border: 2px solid #ffffff;
     }
@@ -58,15 +84,16 @@ body{
 @media (min-width: 901px) {
     .container{
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
         grid-template-columns: 300px 300px 300px;
         grid-template-rows: 250px 600px;
         grid-template-areas:
-        "hd hd hd hd hd hd hd hd hd hd"
-        "nav nav nav nav nav nav nav nav nav"
-        "sd sd sd sd sd main main main main main"
-        "ft ft ft ft ft ft ft ft ft ft";
+        "hd hd hd hd hd hd hd hd"
+        "city city city city city city city city"
+        "dDate dDate dDate dDate rDate rDate rDate rDate"
+        "ft ft ft ft ft ft ft ft";
         border: 2px solid #ffffff;
     }
 }

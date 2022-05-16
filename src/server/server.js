@@ -49,6 +49,7 @@ const port = 8713;
 
 const listening = () => {
     console.log(`Server running on localhost:${port}`);
+    console.log(`key: ${geonamesApiKey}`)
 }
 
 const server = app.listen(port, listening);
@@ -76,7 +77,7 @@ async function addGeoData (req, res){
     const city = req.body.city
     const fullGeoURL = `${geonamesURL}${city}&maxRows=1&username=${geonamesApiKey}`;
     console.log(fullGeoURL);
-    const newData = await (fetch(encodeURI(fullGeoURL)))
+    const newData = await fetch(encodeURI(fullGeoURL))
                             .then(res => res.json());
                             
     console.log(newData);

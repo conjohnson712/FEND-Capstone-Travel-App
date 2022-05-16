@@ -3,12 +3,25 @@
     flex-direction: column;
     height: 10%;
     width: 40%;
-    margin: auto;
-    
+    margin: auto;   
+}
+
+.holder destination {
+    grid-area: city;
+    margin: 0 auto;
+}
+
+.holder departure {
+    grid-area: dDate;
+}
+
+.holder return {
+    grid-area: rDate;
 }
 
 .entry{
     width: 25%;
+    height: 15%;
     background: #3b4a6b66;
     display: block;
 
@@ -17,10 +30,11 @@
 .title{
     text-align: center;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+    margin: 0 auto;
 }
 
 
-#entryHolder{
+#geoEntry{
     display: flex;
     flex-direction: column;
     height: 200px;
@@ -60,7 +74,7 @@ input{
     height: 60px;
     width: 320px;
     background: #5c8ffc;
-    color: #7f2edb;
+    color: white;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     text-align: center;
