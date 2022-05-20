@@ -8,11 +8,18 @@ const newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
 // Reference: 
 // My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
 function handleSubmit(event) {
-    event.preventDefault()
+    event.preventDefault();
 
     // check what text was put into the form field
     // Function to POST data 
-    let city = document.getElementById('city').value
+    let city = document.getElementById('city').value;
+    // let departDate = document.getElementById('departure').value;
+    // let returnDate = document.getElementById('return').value;
+    
+    let geoData = {
+        Destination: city,
+    }; //Departure: departDate, Return: returnDate,
+
     if (Client.checkForCity(city)){
         console.log("::: Form Submitted :::");
         fetch('http://localhost:8713/geonames', {
@@ -20,13 +27,14 @@ function handleSubmit(event) {
             credentials: "same-origin",
             headers: {
                 "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ city: city }), // body data type must match "Content-Type" header
-    })
-    .then(res => res.json())
-    .then(function(res) {
-        updateUI(res)
-    });
+            },
+            body: JSON.stringify(geoData), // body data type must match "Content-Type" header
+        })
+        .then(res => res.json())
+        .then(function(res) {
+            updateUI(res)
+            console.log(geoData)
+        });
     } else {
         alert('Submission Failed')
     };
@@ -44,7 +52,6 @@ if(submit){
 // Reference: 
 // My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
 const updateUI = async () => {
-    
     const request = await fetch('http://localhost:8713/geonames');
     try {
         // Transform into JSON

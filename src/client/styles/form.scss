@@ -6,16 +6,21 @@
     margin: auto;   
 }
 
-.holder destination {
+#date {
+    width: 250px;
+    margin: auto;
+}
+
+#destination {
     grid-area: city;
     margin: 0 auto;
 }
 
-.holder departure {
+#departure {
     grid-area: dDate;
 }
 
-.holder return {
+#return {
     grid-area: rDate;
 }
 
@@ -24,7 +29,7 @@
     height: 15%;
     background: #3b4a6b66;
     display: block;
-
+    grid-area: post;
 }
 
 .title{

@@ -1,5 +1,6 @@
 // dotenv for hiding API_KEY
 // Reference: 'Evaluate News Article with NLP' Project in next course
+var path = require('path');
 const dotenv = require('dotenv');
 dotenv.config({path: '.env'});
 
@@ -7,18 +8,19 @@ dotenv.config({path: '.env'});
 // References: 
 // Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
 // Knowledge Post: https://knowledge.udacity.com/questions/771226
-const geonamesURL = 'http://api.geonames.org/search?q=';
+const geonamesURL = 'http://api.geonames.org/searchJSON?q=';
 const geonamesApiKey = process.env.GEO_API_KEY;
+
 
 // Express to run server and routes
 // Reference: Lesson 2-4 https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1844/concepts/f9133dcc-e746-4bbe-a5f5-91941535940d
-var path = require('path');
+
 const express = require('express');
 const app = express();
 
 /* Dependencies */
 // Reference: Lesson 2-4 https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1844/concepts/f9133dcc-e746-4bbe-a5f5-91941535940d
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
 
 /* Middleware*/
@@ -37,7 +39,6 @@ app.use(cors());
 // Reference: Lesson 2-8: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1844/concepts/ecf2408b-6ab1-4906-bd28-8348d99bc95d
 app.use(express.static('dist'));
 
-
 app.get('/', function (req, res) {
     res.sendFile('./dist/index.html')
 });
@@ -50,7 +51,7 @@ const port = 8713;
 const listening = () => {
     console.log(`Server running on localhost:${port}`);
     console.log(`key: ${geonamesApiKey}`)
-}
+};
 
 const server = app.listen(port, listening);
 
@@ -59,23 +60,29 @@ const server = app.listen(port, listening);
 
 geonamesData = {};
 
+
 // Initialize Geoname route with a callback function
 // Callback function to complete GET '/geonames'
 // Reference: Lesson 3-2: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1845/concepts/b0d68e7d-274a-43ef-b3da-3cfe93a77961
+console.log('Starting Geo GET request:');
+
 app.get('/geonames', (req, res)=>{
     res.send(geonamesData);
 });
+
+console.log('Geo GET Successful!');
 
 
 // Geonames Post Route
 // References:
 // My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
 // API parameters determined from example API call: http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo
-app.post('/geonames', addGeoData);
+console.log('Starting Geo POST Route:')
 
 async function addGeoData (req, res){
-    const city = req.body.city
-    const fullGeoURL = `${geonamesURL}${city}&maxRows=1&username=${geonamesApiKey}`;
+    const geonamesApiKey = process.env.GEO_API_KEY
+    let city = req.body.city
+    const fullGeoURL = `'${geonamesURL}${city}&maxRows=1&username=${geonamesApiKey}'`;
     console.log(fullGeoURL);
     const newData = await fetch(encodeURI(fullGeoURL))
                             .then(res => res.json());
@@ -84,15 +91,16 @@ async function addGeoData (req, res){
     let geoEntry = {
         lat: newData.geonames[0].lat,
         lng: newData.geonames[0].lng,
-        city: newData.geonames[0].toponymName, // Used instead of 'name' to avoid spelling errors
-        country: newData.geonames[0].countrycode,
-        wikipedia: newData.geonames[0].wikipedia,       
+        city: newData.geonames[0].toponymName // Used instead of 'name' to avoid spelling errors      
     };
     geonamesData=geoEntry;
     console.log(geonamesData);
     res.send(geonamesData);
 };
 
+app.post('/geonames', addGeoData);
+
+console.log('Geo POST Successful!')
 
 //-------------- WeatherBit API-----------------// 
 // let weatherData = {};

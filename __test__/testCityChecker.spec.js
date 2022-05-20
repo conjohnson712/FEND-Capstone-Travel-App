@@ -1,7 +1,7 @@
 /**
 * @jest-environment jsdom
 */
-import { checkForName } from '../src/client/js/nameChecker';
+import { checkForCity } from '../src/client/js/cityChecker';
 
 // The describe() function takes two arguments - a string description, and a test suite as a callback function.     
 describe("Testing that input field is not Null", () => {
