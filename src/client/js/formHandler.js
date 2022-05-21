@@ -22,11 +22,11 @@ function handleSubmit(event) {
 
     if (Client.checkForCity(city)){
         console.log("::: Form Submitted :::");
-        fetch('http://localhost:8713/geonames', {
+        const getGeo = fetch('http://localhost:8713/geonames', {
             method: "POST",
             credentials: "same-origin",
             headers: {
-                "Content-Type": "application/json",
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(geoData), // body data type must match "Content-Type" header
         })
@@ -52,7 +52,7 @@ if(submit){
 // Reference: 
 // My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
 const updateUI = async () => {
-    const request = await fetch('http://localhost:8713/geonames');
+    const request = await fetch('http://localhost:8713/geonames', GEO_API_KEY);
     try {
         // Transform into JSON
         const allData = await request.json();

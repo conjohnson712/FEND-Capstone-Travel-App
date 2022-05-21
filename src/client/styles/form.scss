@@ -2,21 +2,22 @@
     display: flex;
     flex-direction: column;
     height: 10%;
-    width: 40%;
-    margin: auto;   
+    width: auto;
+    margin: 0 auto;   
 }
 
-#date {
-    width: 250px;
-    margin: auto;
+.date {
+    margin: 0 auto;
+    width: auto;
 }
 
 #destination {
     grid-area: city;
+    width: auto;
     margin: 0 auto;
 }
 
-#departure {
+#depart {
     grid-area: dDate;
 }
 
@@ -26,10 +27,9 @@
 
 .entry{
     width: 25%;
-    height: 15%;
-    background: #3b4a6b66;
+    height: auto;
+    background: #3b4a6be3;
     display: block;
-    grid-area: post;
 }
 
 .title{
@@ -42,17 +42,16 @@
 #geoEntry{
     display: flex;
     flex-direction: column;
-    height: 200px;
-    width: 400px;
+    height: 135px;
+    width: 90%;
     background:#a78f31;
-    opacity: 80%;
     color: #200340;
     letter-spacing: 1.5px;
-    margin: auto;
+    margin: 0 auto;
     border-radius: 25%;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
-    box-shadow: 2px 4px 5px #444;
+    box-shadow: 2px 0px 5px #444;
 }
 
 #lng,
@@ -67,17 +66,20 @@
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label{
-    display:block;
-    font-size: 37px;
+    display: block;
+    height: 2em;
+    font-size: 1em;
     text-align: center;
+    margin: 0 auto;
+    background: #3b4a6b8f;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
     letter-spacing: 1.5px;
 }
 
 input{
     display:flex;
-    height: 60px;
-    width: 320px;
+    height: 100%;
+    width: 99%;
     background: #5c8ffc;
     color: white;
     font-size: 20px;
@@ -93,17 +95,16 @@ input{
 
 button{
     display: block;
-    justify-content: center;
-    width: 320px;
-    height: 50px;
-    background:  #03b5e7;
+    width: 30%;
+    height: 90%;
+    background:  #23bce6;
     color: #f0d43a;
     font-size: 26px;
     font-family: 'Oswald', sans-serif;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
     letter-spacing: 1.5px;
-    margin: auto;
-    border: none;
+    margin: 0 auto;
+    border: 2px solid #143a45;
     box-shadow: 2px 4px 5px #444;
 }
 button.hover{
@@ -121,8 +122,7 @@ textarea{
     text-align: center;
     letter-spacing: 1.5px;
     border-radius: 25%;
-    padding: 20px;
-    margin: center;
+    margin: 0 auto;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     

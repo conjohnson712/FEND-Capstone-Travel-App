@@ -1,14 +1,14 @@
 // dotenv for hiding API_KEY
 // Reference: 'Evaluate News Article with NLP' Project in next course
-var path = require('path');
 const dotenv = require('dotenv');
 dotenv.config({path: '.env'});
+var path = require('path');
 
 // Personal API Key for Geoname API
 // References: 
 // Lesson 4-6: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1846/concepts/211c2a41-4ab7-48ea-94cc-b44b2e4363c4
 // Knowledge Post: https://knowledge.udacity.com/questions/771226
-const geonamesURL = 'http://api.geonames.org/searchJSON?q=';
+const geonamesURL = `http://api.geonames.org/searchJSON?q=`;
 const geonamesApiKey = process.env.GEO_API_KEY;
 
 
