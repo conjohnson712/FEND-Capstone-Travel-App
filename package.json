@@ -16,7 +16,7 @@
   "author": "Connor Johnson",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^8.2.0",
+    "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "jest-fetch-mock": "^3.0.3",
     "webpack": "^4.40.0",
@@ -37,7 +37,7 @@
     "jest": "^25.3.0",
     "mini-css-extract-plugin": "^1.3.0",
     "node": "^14.4.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "node-sass": "^5.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "sass-loader": "^10.2.1",

@@ -10,7 +10,9 @@ import './styles/form.scss';
 import './styles/header.scss';
 import './styles/resets.scss';
 
+console.log(checkForCity, handleSubmit);
+
 export { 
     checkForCity,
     handleSubmit
- } 
+};

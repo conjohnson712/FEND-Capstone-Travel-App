@@ -25,17 +25,17 @@
             <input type="text" id="city" placeholder="Enter City">
           </div>
   
-          <!-- <div class="date">
+          <div class="date">
             <div id="depart">
               <label for="depart">When Will You Depart?</label>
-              <input type="text" id="departureDate" placeholder="Enter Departure Date">
+              <input type="text" id="start" placeholder="Enter Departure Date">
             </div>
 
             <div id="return">
               <label for="return">When Will You Return?</label>
-              <input type="text" id="returnDate" placeholder="Enter Return Date">
+              <input type="text" id="end" placeholder="Enter Return Date">
             </div>
-          </div> -->
+          </div>
   
           <div class ="holder submit">
             <button id="submit" type = "submit"> Submit </button>
@@ -46,15 +46,14 @@
   
     <div class="card out">
       <div class ="holder entry">
-        <div class = "title">About Your Destination:</div>
+        <div class = "title">About Your Trip:</div>
       </div>
   
-      <div id = "geoEntry">
-        <div id = "lat"></div>
-        <div id = "lng"></div> 
-        <div id = "city"></div>
-        <div id = "country"></div>
-        <div id = "wikipedia"></div>
+      <div id ="geoEntry">
+        <div id ="lat"></div>
+        <div id ="lng"></div> 
+        <div id ="city"></div>
+        <div id ="country"></div>
       </div>
     </div>
   
@@ -70,6 +69,7 @@
     </div>
   </footer>
 </div>
+
 
   <!-- <script>
     // Check that service workers are supported
