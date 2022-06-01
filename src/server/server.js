@@ -1,7 +1,7 @@
 // dotenv for hiding API_KEY
 // Reference: 'Evaluate News Article with NLP' Project in next course
 const dotenv = require("dotenv");
-dotenv.config({path: "./.env"});
+dotenv.config({path: ".env"});
 var path = require("path");
 
 // Express to run server and routes
@@ -70,8 +70,8 @@ const geonamesApiKey = process.env.GEO_API_KEY;
 console.log(":: Starting Geo GET request ::");
 
 app.get("/geonames", (req, res)=>{
-    res.send(geonamesData);
-    console.log(':: Geo GET Successful! ::');
+    res.send(geonamesData)
+    console.log(':: Geo GET Successful! ::')
 });
 
 
@@ -85,9 +85,9 @@ console.log(":: Starting Geo POST Route ::")
 
 app.post("/geonames", async function (req, res){
     let geonamesApiKey = process.env.GEO_API_KEY;
-    let city = req.body.city;
+    let city = req.body.geoData.Destination;
     console.log(`Destination Chosen: ${city}`);
-    const fullGeoURL = `${geonamesURL}q=${city}&username=${geonamesApiKey}&fuzzy=0.8&maxRows=10`;
+    const fullGeoURL = `${geonamesURL}q=${city}&username=${geonamesApiKey}&fuzzy=0.8&maxRows=1`;
     console.log(fullGeoURL);
     const newData = await fetch(encodeURI(fullGeoURL))
                             .then(res => res.json());
@@ -100,11 +100,10 @@ app.post("/geonames", async function (req, res){
         lng: newData.geonames[0].lng,
     }
     geonamesData=geoEntry;
-    console.log(`geoData:`, geonamesData);
+    console.log(`geoData:`, city);
     res.send(geonamesData);
     console.log(":: Geo POST Successful! ::");
 });
-console.log(geonamesData);
 
 //-------------- WeatherBit API-----------------// 
 // let weatherData = {};
