@@ -49,8 +49,10 @@ npm run dev
 ```
 12. At this point, the webpage should automatically load in your browser. If not, enter the following URL into your search bar and it should come up:
 ```
-http://localhost:8713/
+http://localhost:8714/
 ```
+PLEASE NOTE: This project was confirmed to run on Google Chrome and a private window in Firefox. If you use another browser and experience difficulties, please try the project on Chrome. 
+
 13. Now the Travel App should be ready for your input! Enter a destination, start, and end date to book your next trip! 
 
 

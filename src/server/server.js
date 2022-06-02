@@ -70,8 +70,9 @@ const geonamesApiKey = process.env.GEO_API_KEY;
 console.log(":: Starting Geo GET request ::");
 
 app.get("/geonames", (req, res)=>{
-    res.send(geonamesData)
     console.log(':: Geo GET Successful! ::')
+    res.send(geonamesData)
+    
 });
 
 
