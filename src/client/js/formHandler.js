@@ -110,8 +110,8 @@ const updateUI = async () => {
         // Write updated data to DOM elements
         document.getElementById("lat").innerHTML = `Latitude: ${allData.lat}`;
         document.getElementById("lng").innerHTML = `Longitude: ${allData.lng}`;
-        document.getElementById("city").innerHTML = `City: ${allData.toponymName}`;
-        document.getElementById("country").innerHTML = `Country: ${allData.countryName}`;
+        document.getElementById("location").innerHTML = `Location: ${allData.location}`;
+        document.getElementById("country").innerHTML = `Country: ${allData.country}`;
     }
     catch(error) {
         console.log("error", error);

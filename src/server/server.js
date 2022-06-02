@@ -71,11 +71,8 @@ console.log(":: Starting Geo GET request ::");
 
 app.get("/geonames", (req, res)=>{
     console.log(':: Geo GET Successful! ::')
-    res.send(geonamesData)
-    
+    res.send(geonamesData) 
 });
-
-
 
 
 // Geonames Post Route
@@ -95,13 +92,12 @@ app.post("/geonames", async function (req, res){
                             
     console.log(newData);
     let geoEntry = {
-        city: newData.geonames[0].toponymName, // Used instead of 'name' to avoid spelling errors
+        location: newData.geonames[0].toponymName, // Used instead of 'name' to avoid spelling errors
         country: newData.geonames[0].countryName,
         lat: newData.geonames[0].lat,
         lng: newData.geonames[0].lng,
     }
     geonamesData=geoEntry;
-    console.log(`geoData:`, city);
     res.send(geonamesData);
     console.log(":: Geo POST Successful! ::");
 });
