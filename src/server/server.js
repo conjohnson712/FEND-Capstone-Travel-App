@@ -1,3 +1,5 @@
+import { calcTripLength } from "../client/js/formHandler";
+
 // dotenv for hiding API_KEY
 // Reference: 'Evaluate News Article with NLP' Project in next course
 const dotenv = require("dotenv");
@@ -36,6 +38,7 @@ app.get('/', function (req, res) {
 
 // Mock API test
 const mockAPIResponse = require("./mockAPI");
+const { ClientRequest } = require("http");
 
 app.get("/test", function (req, res) {
     res.send(mockAPIResponse)
@@ -96,6 +99,8 @@ app.post("/geonames", async function (req, res){
         country: newData.geonames[0].countryName,
         lat: newData.geonames[0].lat,
         lng: newData.geonames[0].lng,
+        daysToTrip: calcTripLength.daysToTrip, 
+        length: calcTripLength.tripLength,
     }
     geonamesData=geoEntry;
     res.send(geonamesData);

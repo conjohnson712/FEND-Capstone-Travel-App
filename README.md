@@ -53,7 +53,7 @@ http://localhost:8714/
 ```
 PLEASE NOTE: This project was confirmed to run on Google Chrome and a private window in Firefox. If you use another browser and experience difficulties, please try the project on Chrome. 
 
-13. Now the Travel App should be ready for your input! Enter a destination, start, and end date to book your next trip! 
+13. Now the Travel App should be ready for your input! Enter a destination, start, and end date to book your next trip! Note: for accurate weather results, trips should be kept to a maximum of 14 days. 
 
 
 ## Extras

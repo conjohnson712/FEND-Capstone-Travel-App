@@ -28,7 +28,6 @@ function handleSubmit(event) {
         })
         .then(res => res.json())
         .then(function(res) {
-            //verifyDates()
             calcTripLength()
             updateUI(res)
             console.log(geoData)
@@ -48,42 +47,15 @@ if(submit){
 };
 
 
-// Create a new date instance dynamically with JS
-// Reference: https://phoenixnap.com/kb/how-to-get-the-current-date-and-time-javascript
-let today = new Date();
-const newDate = today.getMonth()+1+'.'+ today.getDate()+'.'+ today.getFullYear();
-console.log(`Today is ${today}`)
-
-
-// // Function to Verify that user Dates are compatible
-// // verifyDates --> today, start, end --> true or alert
-// const verifyDates = (today, start, end) => {
-//     // Ensures that start date is in the future
-//     if (start - today > 0) {
-//         console.log("Start Date Approved")
-//         return true;
-//     } else {
-//         console.log("Departure Date Too Soon, Pick a Future Date")
-//     };
-
-//     // Ensures that the user's trip is within 14 days
-//     if (end - today < 14) {
-//         console.log("End Date Approved")
-//         return true
-//     } else {
-//         console.log("For Weather Accuracy, Trips Can Only Be Booked Two Weeks Out");
-//     };
-
-//     let tripCountdown = `(${start}-${today}) Days Until Your Adventure!`;
-//     console.log(tripCountdown)
-// }; 
-
-// verifyDates(today, start, end);
-
-
 // Function that determines the length of the user's trip
-// calcTripLength --> void
+// calcTripLength --> string
 const calcTripLength = () => {
+    // Create a new date instance dynamically with JS
+    // Reference: https://phoenixnap.com/kb/how-to-get-the-current-date-and-time-javascript
+    let today = new Date();
+    const newDate = today.getMonth()+1+'.'+ today.getDate()+'.'+ today.getFullYear();
+    console.log(`Today is ${today}`)
+    
     // Create date variables to track trip length
     // Reference: https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/
     let start = new Date(document.getElementById("start").value);
@@ -94,18 +66,28 @@ const calcTripLength = () => {
     let tripTimeMs = (end.getTime() - start.getTime());
     let msToDays = (1000 * 60 * 60 * 24);
 
+    // Days until trip starts
+    let timeToTrip = (start.getTime() - today.getTime());
+    let daysToTrip = Math.ceil(timeToTrip / msToDays);
+
+    // if (daysToTrip > 0) {
+    //     console.log(`Your Trip Is ${daysToTrip} Days Away!`);
+    //     return true
+    // } else {
+    //     alert("Start date must be at least 1 day away");
+    // }
+
     // Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
     let tripLength = Math.ceil(tripTimeMs / msToDays);
 
-    if (tripLength > 0 && tripLength < 14) {
-        console.log(`Your Trip Is ${tripLength} Days Long`)
-        return true;
+    if (tripLength > 0 && tripLength < 14 && daysToTrip > 0) {
+        return `Your Trip Is ${tripLength} Days Long And Starts In ${daysToTrip} Days!`
+
     } else {
-        alert("Warning: Trip must be between 1 and 14 days to ensure weather accuracy");
+        alert("IMPORTANT NOTICE FOR USER: Your trip must be between 1 and 14 days in the future to ensure weather accuracy");
     };
 }
 
-calcTripLength();
 
 // updateUI: async --> void
 // Function to update UI with NLP results
@@ -121,7 +103,8 @@ const updateUI = async () => {
         document.getElementById("lat").innerHTML = `Latitude: ${allData.lat}`;
         document.getElementById("lng").innerHTML = `Longitude: ${allData.lng}`;
         document.getElementById("location").innerHTML = `Location: ${allData.location}`;
-        document.getElementById("country").innerHTML = `Country: ${allData.country}`;
+        document.getElementById("country").innerHTML = `Country: ${allData.country}`;;
+        document.getElementById("length").innerHTML = `${calcTripLength()}`;
     }
     catch(error) {
         console.log("error", error);
