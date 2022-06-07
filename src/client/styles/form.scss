@@ -36,6 +36,7 @@
     text-align: center;
     text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
     margin: 0 auto;
+    padding-bottom: 2px;
 }
 
 
@@ -48,7 +49,7 @@
     color: #200340;
     letter-spacing: 1.5px;
     margin: 0 auto;
-    border-radius: 25%;
+    border-radius: 15%;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     box-shadow: 2px 0px 5px #444;
@@ -67,7 +68,7 @@
 }
 
 #daysToTrip {
-    margin-top: 2px;
+    margin-top: 5px;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
