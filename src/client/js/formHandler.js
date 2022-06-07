@@ -28,8 +28,8 @@ function handleSubmit(event) {
         })
         .then(res => res.json())
         .then(function(res) {
-            // verifyDates()
-            // calcTripLength()
+            //verifyDates()
+            calcTripLength()
             updateUI(res)
             console.log(geoData)
         });
@@ -48,14 +48,11 @@ if(submit){
 };
 
 
-// // Create a new date instance dynamically with JS
-// let d = new Date();
-// const newDate = d.getMonth()+1+'.'+ d.getDate()+'.'+ d.getFullYear();
-
-// // Create date variables to track trip length
-// let today = new Date();
-// let start = new Date(document.getElementById("start").value);
-// let end = new Date(document.getElementById("end").value);
+// Create a new date instance dynamically with JS
+// Reference: https://phoenixnap.com/kb/how-to-get-the-current-date-and-time-javascript
+let today = new Date();
+const newDate = today.getMonth()+1+'.'+ today.getDate()+'.'+ today.getFullYear();
+console.log(`Today is ${today}`)
 
 
 // // Function to Verify that user Dates are compatible
@@ -66,7 +63,7 @@ if(submit){
 //         console.log("Start Date Approved")
 //         return true;
 //     } else {
-//         alert("Departure Date Too Soon, Pick a Future Date")
+//         console.log("Departure Date Too Soon, Pick a Future Date")
 //     };
 
 //     // Ensures that the user's trip is within 14 days
@@ -74,7 +71,7 @@ if(submit){
 //         console.log("End Date Approved")
 //         return true
 //     } else {
-//         alert("For Weather Accuracy, Trips Can Only Be Booked Two Weeks Out");
+//         console.log("For Weather Accuracy, Trips Can Only Be Booked Two Weeks Out");
 //     };
 
 //     let tripCountdown = `(${start}-${today}) Days Until Your Adventure!`;
@@ -84,18 +81,24 @@ if(submit){
 // verifyDates(today, start, end);
 
 
-// // Function that determines the length of the user's trip
-// // calcTripLength --> void
-// const calcTripLength = () => {
-//     // getTime() returns time in milliseconds
-//     let tripTimeMs = end.getTime() - start.getTime();
-//     let msToDays = (1000 * 60 * 60 * 24);
+// Function that determines the length of the user's trip
+// calcTripLength --> void
+const calcTripLength = () => {
+    // Create date variables to track trip length
+    // Reference: https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/
+    let start = new Date(document.getElementById("start").value);
+    let end = new Date(document.getElementById("end").value);
+    console.log(`Start: ${start} End: ${end}`)
+    // getTime() returns time in milliseconds
+    let tripTimeMs = (end.getTime() - start.getTime());
+    let msToDays = (1000 * 60 * 60 * 24);
 
-//     let tripLength = `Your Trip is (${tripTimeMs}/${msToDays}) Days Long`
-//     console.log(tripLength)
-// }
+    // Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
+    let tripLength = "Your Trip is " + Math.ceil(tripTimeMs / msToDays) + " days long"
+    console.log(tripLength)
+}
 
-// calcTripLength();
+calcTripLength();
 
 // updateUI: async --> void
 // Function to update UI with NLP results
