@@ -88,14 +88,21 @@ const calcTripLength = () => {
     // Reference: https://www.geeksforgeeks.org/how-to-calculate-the-number-of-days-between-two-dates-in-javascript/
     let start = new Date(document.getElementById("start").value);
     let end = new Date(document.getElementById("end").value);
-    console.log(`Start: ${start} End: ${end}`)
+    console.log(`Start: ${start} End: ${end}`);
+
     // getTime() returns time in milliseconds
     let tripTimeMs = (end.getTime() - start.getTime());
     let msToDays = (1000 * 60 * 60 * 24);
 
     // Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
-    let tripLength = "Your Trip is " + Math.ceil(tripTimeMs / msToDays) + " days long"
-    console.log(tripLength)
+    let tripLength = Math.ceil(tripTimeMs / msToDays);
+
+    if (tripLength > 0 && tripLength < 14) {
+        console.log(`Your Trip Is ${tripLength} Days Long`)
+        return true;
+    } else {
+        alert("Warning: Trip must be between 1 and 14 days to ensure weather accuracy");
+    };
 }
 
 calcTripLength();
