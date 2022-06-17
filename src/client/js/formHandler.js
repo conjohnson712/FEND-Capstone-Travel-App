@@ -28,8 +28,7 @@ function handleSubmit(event) {
         })
         .then(res => res.json())
         .then(function(res) {
-            calcTripLength()
-            updateUI(res)
+            updateUI(res);
             console.log(geoData)
         });
     } else {
@@ -45,7 +44,6 @@ let submit = document.getElementById("submit");
 if(submit){
     submit.addEventListener("click", handleSubmit);
 };
-
 
 // Function that determines the length of the user's trip
 // calcTripLength --> string
@@ -70,24 +68,15 @@ const calcTripLength = () => {
     let timeToTrip = (start.getTime() - today.getTime());
     let daysToTrip = Math.ceil(timeToTrip / msToDays);
 
-    // if (daysToTrip > 0) {
-    //     console.log(`Your Trip Is ${daysToTrip} Days Away!`);
-    //     return true
-    // } else {
-    //     alert("Start date must be at least 1 day away");
-    // }
-
     // Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
     let tripLength = Math.ceil(tripTimeMs / msToDays);
 
     if (tripLength > 0 && tripLength < 14 && daysToTrip > 0) {
         return `Your Trip Is ${tripLength} Days Long And Starts In ${daysToTrip} Days!`
-
     } else {
         alert("IMPORTANT NOTICE FOR USER: Your trip must be between 1 and 14 days in the future to ensure weather accuracy");
     };
-}
-
+};
 
 // updateUI: async --> void
 // Function to update UI with NLP results
@@ -112,4 +101,4 @@ const updateUI = async () => {
     };
 };
 
-export { handleSubmit, updateUI };
+export { handleSubmit, updateUI, calcTripLength };

@@ -1,4 +1,3 @@
-// Import the js file to test
 /**
 * @jest-environment jsdom
 */

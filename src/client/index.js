@@ -1,7 +1,8 @@
 // Reference: My NLP Project: 
 // https://github.com/conjohnson712/Evaluate-Article-with-NLP
 import { checkForCity } from './js/cityChecker';
-import { handleSubmit } from './js/formHandler';
+import { handleSubmit } from './js/formHandler.js';
+import { calcTripLength } from './js/formHandler.js';
 
 
 import './styles/base.scss';
@@ -12,5 +13,6 @@ import './styles/resets.scss';
 
 export { 
     checkForCity,
-    handleSubmit
+    handleSubmit,
+    calcTripLength,
 };

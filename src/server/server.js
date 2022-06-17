@@ -1,5 +1,3 @@
-import { calcTripLength } from "../client/js/formHandler";
-
 // dotenv for hiding API_KEY
 // Reference: 'Evaluate News Article with NLP' Project in next course
 const dotenv = require("dotenv");
@@ -51,11 +49,10 @@ const port = 8714;
 
 const listening = () => {
     console.log(`Server running on localhost:${port}`);
-    console.log(`key: ${geonamesApiKey}`)
+    console.log(`key: ${geonamesApiKey}`) 
 };
 
 const server = app.listen(port, listening);
-
 
 //---------------- GeoNames API ---------------//
 
@@ -99,8 +96,6 @@ app.post("/geonames", async function (req, res){
         country: newData.geonames[0].countryName,
         lat: newData.geonames[0].lat,
         lng: newData.geonames[0].lng,
-        daysToTrip: calcTripLength.daysToTrip, 
-        length: calcTripLength.tripLength,
     }
     geonamesData=geoEntry;
     res.send(geonamesData);
