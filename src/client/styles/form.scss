@@ -43,7 +43,7 @@
 #geoEntry{
     display: flex;
     flex-direction: column;
-    height: 135px;
+    height: auto;
     width: 90%;
     background:#a78f31;
     color: #200340;
@@ -55,16 +55,18 @@
     box-shadow: 2px 0px 5px #444;
 }
 
-#lng,
-#lat,
+#coordinates,
 #location,
 #country, 
 #length, 
-#daysToTrip {
+#daysToTrip,
+#description,
+#temp {
     display: grid;
     font-size: 16px;
     text-align: center;
     color: #080807;
+    margin-top: 5px;
 }
 
 #daysToTrip {

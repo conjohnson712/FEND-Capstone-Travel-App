@@ -1,6 +1,6 @@
 // Reference: My NLP Project: 
 // https://github.com/conjohnson712/Evaluate-Article-with-NLP
-import { checkForCity } from './js/cityChecker';
+import { checkForCity } from './js/cityChecker.js';
 import { handleSubmit } from './js/formHandler.js';
 import { calcTripLength } from './js/formHandler.js';
 

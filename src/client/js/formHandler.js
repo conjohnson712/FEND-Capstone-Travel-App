@@ -71,8 +71,8 @@ const calcTripLength = () => {
     // Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
     let tripLength = Math.ceil(tripTimeMs / msToDays);
 
-    if (tripLength > 0 && tripLength < 14 && daysToTrip > 0) {
-        return `Your Trip Is ${tripLength} Days Long And Starts In ${daysToTrip} Days!`
+    if (tripLength >= 0 && tripLength <= 14 && daysToTrip >= 0) {
+        return `Your Trip Is ${tripLength} Day(s) Long And Starts In ${daysToTrip} Day(s)!`
     } else {
         alert("IMPORTANT NOTICE FOR USER: Your trip must be between 1 and 14 days in the future to ensure weather accuracy");
     };
@@ -89,11 +89,11 @@ const updateUI = async () => {
         const allData = await request.json();
         console.log(allData);
         // Write updated data to DOM elements
-        document.getElementById("lat").innerHTML = `Latitude: ${allData.lat}`;
-        document.getElementById("lng").innerHTML = `Longitude: ${allData.lng}`;
-        document.getElementById("location").innerHTML = `Location: ${allData.location}`;
-        document.getElementById("country").innerHTML = `Country: ${allData.country}`;;
+        document.getElementById("coordinates").innerHTML = `Latitude: ${allData.lat} ||  Longitude: ${allData.lng}`;
+        document.getElementById("location").innerHTML = `Location: ${allData.location}, ${allData.country}`;
         document.getElementById("length").innerHTML = `${calcTripLength()}`;
+        document.getElementById("description").innerHTML = `Forecast for Departure: ${allData.description}`;
+        document.getElementById("temp").innerHTML = `High: ${allData.high} ||  Low: ${allData.low}`
     }
     catch(error) {
         console.log("error", error);

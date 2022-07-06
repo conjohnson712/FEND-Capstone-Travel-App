@@ -100,70 +100,65 @@ app.post("/geonames", async function (req, res){
     geonamesData=geoEntry;
     res.send(geonamesData);
     console.log(":: Geo POST Successful! ::");
+
+    //-------------- WeatherBit API-----------------// 
+    let weatherData = {};
+    const weatherAPIKey = process.env.WB_API_KEY
+    const weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily?`
+
+    // WeatherBit Post Route
+    // References:
+    // My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
+    // API parameters determined from example API call: https://www.weatherbit.io/api/weather-current
+    const fullweatherURL = `${weatherURL}lat=${geonamesData.lat}&lon=${geonamesData.lng}&key=${weatherAPIKey}`;
+    console.log(fullweatherURL);
+    const wbData = await fetch(fullweatherURL)
+                            .then(res => res.json());
+                            
+    console.log(wbData);
+
+    let weatherEntry = {
+        description: wbData.data[0].weather.description,
+        high: wbData.data[0].high_temp,
+        low: wbData.data[0].low_temp
+    };
+    weatherData=weatherEntry;
+    console.log(weatherData);
+
+    res.send(weatherData);
+    console.log(":: Weather POST Successful ::")
+
+
+
+
+    // --------------- Pixabay API -----------------// 
+    // let pixabayData = {};
+    // const pixabayAPIKey = process.env.PIX_API_KEY
+    // const pixabayURL = `https://pixabay.com/api/?`;
+
+    // app.get("/pixabay", (req, res)=>{
+    //     res.send(pixabayData);
+    // });
+
+
+    // // Pixabay Post Route
+    // // Reference:
+    // // API parameters determined from example API call: https://pixabay.com/api/docs/
+    // app.post("/pixabay", async function (req, res){
+    //     const fullpixabayURL = `${pixabayURL}key=${pixabayAPIKey}&q=${req.body.city}&image_type=photo`;
+    //     console.log(fullpixabayURL);
+    //     const newData = await fetch(fullpixabayURL)
+    //                             .then(res => res.json());
+                            
+    //     console.log(newData);
+
+    //     let pixabayEntry = {
+
+    //     };
+    //     pixabayData=pixabayEntry;
+    //     console.log(pixabayData);
+    //     res.send(pixabayData);
+    // }
+    // );
+
 });
-
-//-------------- WeatherBit API-----------------// 
-// let weatherData = {};
-// const weatherAPIKey = process.env.WB_API_KEY
-// const weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily?`
-
-// app.get("/weatherbit", (req, res)=>{
-//     res.send(weatherData);
-// });
-
-
-// // WeatherBit Post Route
-// // References:
-// // My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
-// // API parameters determined from example API call: https://www.weatherbit.io/api/weather-current
-// app.post("/weatherbit", async function (req, res){
-//     const fullweatherURL = `${weatherURL}lat=${geonamesData.geonames[0].lat}&lon=${geonamesData.geonames[0].lng}&key=${weatherAPIKey}`;
-//     console.log(fullweatherURL);
-//     const newData = await fetch(fullweatherURL)
-//                             .then(res => res.json());
-                            
-//     console.log(newData);
-
-//     let weatherEntry = {
-//         Description: newData.weather.description,
-//         High: newData.max_temp,
-//         Low: newData.low_temp
-//     };
-//     weatherData=weatherEntry;
-//     console.log(weatherData);
-//     res.send(weatherData);
-// }
-// );
-
-
-
-
-// --------------- Pixabay API -----------------// 
-// let pixabayData = {};
-// const pixabayAPIKey = process.env.PIX_API_KEY
-// const pixabayURL = `https://pixabay.com/api/?`;
-
-// app.get("/pixabay", (req, res)=>{
-//     res.send(pixabayData);
-// });
-
-
-// // Pixabay Post Route
-// // Reference:
-// // API parameters determined from example API call: https://pixabay.com/api/docs/
-// app.post("/pixabay", async function (req, res){
-//     const fullpixabayURL = `${pixabayURL}key=${pixabayAPIKey}&q=${req.body.city}&image_type=photo`;
-//     console.log(fullpixabayURL);
-//     const newData = await fetch(fullpixabayURL)
-//                             .then(res => res.json());
-                            
-//     console.log(newData);
-
-//     let pixabayEntry = {
-
-//     };
-//     pixabayData=pixabayEntry;
-//     console.log(pixabayData);
-//     res.send(pixabayData);
-// }
-// );
