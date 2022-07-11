@@ -48,32 +48,24 @@ app.get("/test", function (req, res) {
 const port = 8714;
 
 const listening = () => {
-    console.log(`Server running on localhost:${port}`);
-    console.log(`key: ${geonamesApiKey}`) 
+    console.log(`Server running on localhost:${port}`); 
 };
 
 const server = app.listen(port, listening);
 
 //---------------- GeoNames API ---------------//
-
-geonamesData = {};
-
-
-// Personal API Key for Geoname API
-const geonamesURL = "http://api.geonames.org/searchJSON?";
-const geonamesApiKey = process.env.GEO_API_KEY;
+let projectData = {};
 
 
 // Initialize Geoname route with a callback function
-// Callback function to complete GET '/geonames'
+// Callback function to complete GET '/apiChain'
 // Reference: Lesson 3-2: https://classroom.udacity.com/nanodegrees/nd0011/parts/cd0429/modules/d153872b-b417-4f32-9c77-d809dc21581d/lessons/ls1845/concepts/b0d68e7d-274a-43ef-b3da-3cfe93a77961
 console.log(":: Starting Geo GET request ::");
 
-app.get("/geonames", (req, res)=>{
+app.get("/apiChain", (req, res)=>{
     console.log(':: Geo GET Successful! ::')
-    res.send(geonamesData) 
+    res.send(allData) 
 });
-
 
 // Geonames Post Route
 // References:
@@ -81,10 +73,18 @@ app.get("/geonames", (req, res)=>{
 // API parameters determined from example API call: http://api.geonames.org/citiesJSON?north=44.1&south=-9.9&east=-22.4&west=55.2&lang=de&username=demo
 console.log(":: Starting Geo POST Route ::")
 
-app.post("/geonames", async function (req, res){
+app.post("/apiChain", async function (req, res){
+    geonamesData = {};
+
+    // Personal API Key for Geoname API
     let geonamesApiKey = process.env.GEO_API_KEY;
+    console.log(`key: ${geonamesApiKey}`)
+
+    
     let city = req.body.geoData.Destination;
     console.log(`Destination Chosen: ${city}`);
+
+    const geonamesURL = "http://api.geonames.org/searchJSON?";
     const fullGeoURL = `${geonamesURL}q=${city}&username=${geonamesApiKey}&fuzzy=0.8&maxRows=1`;
     console.log(fullGeoURL);
     const newData = await fetch(encodeURI(fullGeoURL))
@@ -98,7 +98,7 @@ app.post("/geonames", async function (req, res){
         lng: newData.geonames[0].lng,
     }
     geonamesData=geoEntry;
-    res.send(geonamesData);
+    // res.send(geonamesData);
     console.log(":: Geo POST Successful! ::");
 
     //-------------- WeatherBit API-----------------// 
@@ -125,40 +125,53 @@ app.post("/geonames", async function (req, res){
     weatherData=weatherEntry;
     console.log(weatherData);
 
-    res.send(weatherData);
+    // res.send(weatherData);
     console.log(":: Weather POST Successful ::")
 
+    //--------------- Pixabay API -----------------// 
+    let pixabayData = {};
+    const pixabayAPIKey = process.env.PIX_API_KEY
+    const pixabayURL = `https://pixabay.com/api/?`;
+
+    // Pixabay Post Route
+    // Reference:
+    // API parameters determined from example API call: https://pixabay.com/api/docs/
+    const fullpixabayURL = `${pixabayURL}key=${pixabayAPIKey}&q=${geonamesData.location}&image_type=photo`;
+    console.log(fullpixabayURL);
+    const pixData = await fetch(fullpixabayURL)
+                            .then(res => res.json());
+                        
+    console.log(pixData);
+
+    let pixabayEntry = {
+        photo: pixData.hits[0].webformatURL
+    };
+    pixabayData=pixabayEntry;
+    console.log(pixabayData);
 
 
+    // Combine All APIs into one object to send Client-side (Only way I found to avoid Promise chaining errors)
+    let location = geonamesData.location;
+    let country = geonamesData.country;
+    let lat = geonamesData.lat;
+    let lng = geonamesData.lng;
+    let description = weatherData.description;
+    let high = weatherData.high;
+    let low = weatherData.low;
+    let photo = pixabayData.photo;
 
-    // --------------- Pixabay API -----------------// 
-    // let pixabayData = {};
-    // const pixabayAPIKey = process.env.PIX_API_KEY
-    // const pixabayURL = `https://pixabay.com/api/?`;
+    allData = {
+        location,
+        country, 
+        lat,
+        lng,
+        description,
+        high,
+        low,
+        photo
+    };
 
-    // app.get("/pixabay", (req, res)=>{
-    //     res.send(pixabayData);
-    // });
-
-
-    // // Pixabay Post Route
-    // // Reference:
-    // // API parameters determined from example API call: https://pixabay.com/api/docs/
-    // app.post("/pixabay", async function (req, res){
-    //     const fullpixabayURL = `${pixabayURL}key=${pixabayAPIKey}&q=${req.body.city}&image_type=photo`;
-    //     console.log(fullpixabayURL);
-    //     const newData = await fetch(fullpixabayURL)
-    //                             .then(res => res.json());
-                            
-    //     console.log(newData);
-
-    //     let pixabayEntry = {
-
-    //     };
-    //     pixabayData=pixabayEntry;
-    //     console.log(pixabayData);
-    //     res.send(pixabayData);
-    // }
-    // );
-
+    console.log("allData:", allData);
+    res.send(allData);
+    console.log(":: All APIs Successful ::")
 });

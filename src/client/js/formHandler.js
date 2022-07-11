@@ -13,11 +13,11 @@ function handleSubmit(event) {
     
     let geoData = {
         "Destination": city,
-    }; //Departure: departDate, Return: returnDate,
+    }; //Departure: departDate, Return: returnDate, 
 
     if (Client.checkForCity(city)){
         console.log("::: Form Submitted :::");
-        const getGeo = fetch("http://localhost:8714/geonames", {
+        const getGeo = fetch("http://localhost:8714/apiChain", {
             method: "POST",
             mode: "cors",
             credentials: "same-origin",
@@ -83,7 +83,7 @@ const calcTripLength = () => {
 // Reference: 
 // My NLP Project: https://github.com/conjohnson712/Evaluate-Article-with-NLP
 const updateUI = async () => {
-    const request = await fetch("http://localhost:8714/geonames");
+    const request = await fetch("http://localhost:8714/apiChain");
     try {
         // Transform into JSON
         const allData = await request.json();
@@ -92,8 +92,9 @@ const updateUI = async () => {
         document.getElementById("coordinates").innerHTML = `Latitude: ${allData.lat} ||  Longitude: ${allData.lng}`;
         document.getElementById("location").innerHTML = `Location: ${allData.location}, ${allData.country}`;
         document.getElementById("length").innerHTML = `${calcTripLength()}`;
-        document.getElementById("description").innerHTML = `Forecast for Departure: ${allData.description}`;
-        document.getElementById("temp").innerHTML = `High: ${allData.high} ||  Low: ${allData.low}`
+        document.getElementById("description").innerHTML = `Forecast: ${allData.description}`;
+        document.getElementById("temp").innerHTML = `High: ${allData.high} °C ||  Low: ${allData.low} °C`
+        document.getElementById("photo").innerHTML = `<img id="pix" src="${allData.photo}">`
     }
     catch(error) {
         console.log("error", error);

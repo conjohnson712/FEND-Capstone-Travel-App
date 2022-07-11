@@ -61,7 +61,7 @@ body{
 
 
 /* For Screens 600px - 900px*/
-@media(min-width:600px) and (max-width:900px){
+@media(max-width:900px){
     #app{
         display: flex;
         flex-direction: column;
@@ -77,14 +77,23 @@ body{
         border: 2px solid #ffffff;
     }
 
-    #lng,
-    #lat,
+    #coordinates,
     #location,
     #country, 
     #length, 
-    #daysToTrip{
+    #daysToTrip,
+    #description,
+    #temp,
+    #photo{
         font-size: 10px;
         margin-top: 5px;
+    }
+
+    #pix {
+        max-width: 95%;
+        max-height: 95%;
+        object-fit: fill;
+        align-items: center;
     }
 }
 
@@ -126,4 +135,10 @@ body{
         margin: 0 auto;
     }
 
+    #pix {
+        max-width: 95%;
+        max-height: 95%;
+        object-fit: fill;
+        align-items: center;
+    }
 }
