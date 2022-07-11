@@ -62,7 +62,8 @@
 #daysToTrip,
 #description,
 #temp,
-#photo {
+#photo,
+#pixDefault {
     display: grid;
     font-size: 16px;
     text-align: center;
@@ -72,10 +73,6 @@
 
 #daysToTrip {
     margin-top: 5px;
-}
-
-#photo {
-    border-radius: 15%;
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */

@@ -80,17 +80,19 @@ app.post("/apiChain", async function (req, res){
     let geonamesApiKey = process.env.GEO_API_KEY;
     console.log(`key: ${geonamesApiKey}`)
 
-    
+    // Get city value from user input
     let city = req.body.geoData.Destination;
     console.log(`Destination Chosen: ${city}`);
 
+    // Define and fetch Geonames URL
     const geonamesURL = "http://api.geonames.org/searchJSON?";
     const fullGeoURL = `${geonamesURL}q=${city}&username=${geonamesApiKey}&fuzzy=0.8&maxRows=1`;
     console.log(fullGeoURL);
     const newData = await fetch(encodeURI(fullGeoURL))
-                            .then(res => res.json());
-                            
+                            .then(res => res.json());       
     console.log(newData);
+
+    // Create object to store Geonames data
     let geoEntry = {
         location: newData.geonames[0].toponymName, // Used instead of 'name' to avoid spelling errors
         country: newData.geonames[0].countryName,
@@ -98,10 +100,11 @@ app.post("/apiChain", async function (req, res){
         lng: newData.geonames[0].lng,
     }
     geonamesData=geoEntry;
-    // res.send(geonamesData);
     console.log(":: Geo POST Successful! ::");
 
     //-------------- WeatherBit API-----------------// 
+
+    // Personal API Key for Weatherbit API
     let weatherData = {};
     const weatherAPIKey = process.env.WB_API_KEY
     const weatherURL = `https://api.weatherbit.io/v2.0/forecast/daily?`
@@ -117,6 +120,7 @@ app.post("/apiChain", async function (req, res){
                             
     console.log(wbData);
 
+    // Create object to store Weatherbit data
     let weatherEntry = {
         description: wbData.data[0].weather.description,
         high: wbData.data[0].high_temp,
@@ -125,13 +129,19 @@ app.post("/apiChain", async function (req, res){
     weatherData=weatherEntry;
     console.log(weatherData);
 
-    // res.send(weatherData);
     console.log(":: Weather POST Successful ::")
 
     //--------------- Pixabay API -----------------// 
+
+    // Personal API Key for Pixabay API
     let pixabayData = {};
     const pixabayAPIKey = process.env.PIX_API_KEY
     const pixabayURL = `https://pixabay.com/api/?`;
+
+    // Default Pixabay URL in case there are no results
+    //const defaultPixURL = `${pixabayURL}key=${pixabayAPIKey}&q=${geonamesData.country}&image_type=photo`;
+    // console.log(defaultPixURL)
+   
 
     // Pixabay Post Route
     // Reference:
@@ -143,9 +153,11 @@ app.post("/apiChain", async function (req, res){
                         
     console.log(pixData);
 
+    // Create object to store Pixabay data
     let pixabayEntry = {
         photo: pixData.hits[0].webformatURL
     };
+
     pixabayData=pixabayEntry;
     console.log(pixabayData);
 
@@ -160,6 +172,7 @@ app.post("/apiChain", async function (req, res){
     let low = weatherData.low;
     let photo = pixabayData.photo;
 
+    // Create allData object to store info to be pushed to client
     allData = {
         location,
         country, 
@@ -171,7 +184,11 @@ app.post("/apiChain", async function (req, res){
         photo
     };
 
+    try {
     console.log("allData:", allData);
     res.send(allData);
     console.log(":: All APIs Successful ::")
+    } catch (error) {
+        alert(":: ERROR: Post Route Unsuccessful ::")
+    }
 });
