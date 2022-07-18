@@ -62,3 +62,5 @@ Testing Suites have been introduced to ensure proper operation of necessary func
 npm run test
 ``` 
 
+## Considerations
+Pixabay has a vast catalog of images from a wide array of locations around the world. However, some locations are not as commonly known, and therefore may not have pictures available for them. If your location does not have an image available for it, you will see the default image of a notepad and sunglasses instead.
