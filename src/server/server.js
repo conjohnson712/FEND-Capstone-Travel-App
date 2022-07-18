@@ -154,12 +154,12 @@ app.post("/apiChain", async function (req, res){
     console.log(pixData);
 
     // Create object to store Pixabay data
-    let pixabayEntry = {
-        photo: pixData.hits[0].webformatURL
-    };
+    // let pixabayEntry = {
+    //     photo: pixData.hits[0].webformatURL
+    // };
 
-    pixabayData=pixabayEntry;
-    console.log(pixabayData);
+    // pixabayData=pixabayEntry;
+    // console.log(pixabayData);
 
 
     // Combine All APIs into one object to send Client-side (Only way I found to avoid Promise chaining errors)
@@ -170,7 +170,15 @@ app.post("/apiChain", async function (req, res){
     let description = weatherData.description;
     let high = weatherData.high;
     let low = weatherData.low;
-    let photo = pixabayData.photo;
+
+    // Suggestion from my Auticon Mentor
+    // Displays default image if Pixabay doesn't have any results for the location
+    let photoURL = {}
+        if (pixData.totalHits == 0){
+            photoURL = "https://cdn.pixabay.com/photo/2016/01/09/18/28/notepad-1130743_960_720.jpg";
+         } else {
+            photoURL = pixData.hits[0].webformatURL;
+        }
 
     // Create allData object to store info to be pushed to client
     allData = {
@@ -181,7 +189,7 @@ app.post("/apiChain", async function (req, res){
         description,
         high,
         low,
-        photo
+        photoURL
     };
 
     try {
