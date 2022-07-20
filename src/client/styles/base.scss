@@ -9,13 +9,13 @@ body{
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 125vh;
+    height: 100vh;
 }
 
 #app{
     display: flex;
     flex-direction: column;
-    height:125vh;
+    height:100vh;
     color: #fffffe;
     grid-gap: 1em;
     font-size: 20px;
@@ -60,7 +60,7 @@ body{
 }
 
 
-/* For Screens 600px - 900px*/
+/* For Screens < 900px*/
 @media(max-width:900px){
     #app{
         display: flex;
@@ -75,6 +75,7 @@ body{
         "post post post post post post post post"
         "ft ft ft ft ft ft ft ft";
         border: 2px solid #ffffff;
+        height: 100vh;
     }
 
     #coordinates,
@@ -85,7 +86,7 @@ body{
     #description,
     #temp,
     #photoURL{
-        font-size: 10px;
+        font-size: 0.8em;
         margin-top: 5px;
     }
 
@@ -114,6 +115,7 @@ body{
         "post post post post post post post post"
         "ft ft ft ft ft ft ft ft";
         border: 2px solid #ffffff;
+        height: 100vh;
     }
 
     .date { 
